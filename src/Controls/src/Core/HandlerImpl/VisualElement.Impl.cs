@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System.Runtime.CompilerServices;
 using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Layouts;
 
@@ -23,6 +19,7 @@ namespace Microsoft.Maui.Controls
 				IsPlatformEnabled = _handler != null;
 			}
 		}
+		Paint IFrameworkElement.Background { get; set; }
 
 		protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{

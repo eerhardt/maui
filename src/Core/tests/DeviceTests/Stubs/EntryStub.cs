@@ -13,7 +13,7 @@ namespace Microsoft.Maui.DeviceTests.Stubs
 			set => SetProperty(ref _text, value, onChanged: OnTextChanged);
 		}
 
-		public Color TextColor { get; set; }
+		public Paint Foreground { get; set; }
 
 		public double CharacterSpacing { get; set; }
 
@@ -32,13 +32,14 @@ namespace Microsoft.Maui.DeviceTests.Stubs
 		public TextAlignment HorizontalTextAlignment { get; set; }
 
 		public ReturnType ReturnType { get; set; }
+
 		public ClearButtonVisibility ClearButtonVisibility { get; set; }
+
+		public Keyboard Keyboard { get; set; } = Keyboard.Default;
 
 		public event EventHandler<StubPropertyChangedEventArgs<string>> TextChanged;
 
 		void OnTextChanged(string oldValue, string newValue) =>
 			TextChanged?.Invoke(this, new StubPropertyChangedEventArgs<string>(oldValue, newValue));
-
-		public Keyboard Keyboard { get; set; } = Keyboard.Default;
 	}
 }

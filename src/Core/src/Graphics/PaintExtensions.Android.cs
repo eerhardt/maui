@@ -1,11 +1,10 @@
-﻿using System;
-using Android.Graphics.Drawables;
+﻿using Android.Graphics.Drawables;
 
 namespace Microsoft.Maui.Graphics
 {
 	public static partial class PaintExtensions
 	{
-        public override Drawable? ToDrawable(this Paint paint)
+        public static Drawable? ToDrawable(this Paint paint)
 		{
 			if (paint is SolidPaint solidPaint)
 				return solidPaint.CreateDrawable();
@@ -29,6 +28,7 @@ namespace Microsoft.Maui.Graphics
 		{
 			var drawable = new MauiDrawable();
 			drawable.SetPaint(solidPaint);
+
 			return drawable;
 		}
 
@@ -39,6 +39,7 @@ namespace Microsoft.Maui.Graphics
 
 			var drawable = new MauiDrawable();
 			drawable.SetPaint(linearGradientPaint);
+
 			return drawable;
 		}
 
@@ -49,20 +50,27 @@ namespace Microsoft.Maui.Graphics
 
 			var drawable = new MauiDrawable();
 			drawable.SetPaint(radialGradientPaint);
+
 			return drawable;
 		}
 
-		public static Drawable? CreateBrush(this ImagePaint imagePaint)
+		public static Drawable? CreateDrawable(this ImagePaint imagePaint)
 		{
-			throw new NotImplementedException();
+			var drawable = new MauiDrawable();
+			drawable.SetPaint(imagePaint);
+
+			return drawable;
 		}
 
-		public static Drawable? CreateBrush(this PatternPaint patternPaint)
+		public static Drawable? CreateDrawable(this PatternPaint patternPaint)
 		{
-			throw new NotImplementedException();
+			var drawable = new MauiDrawable();
+			drawable.SetPaint(patternPaint);
+
+			return drawable;
 		}
 
 		static bool IsValid(this GradientPaint? gradienPaint) =>
-			gradienPaint?.GradientStops?.Count > 0;
+			gradienPaint?.GradientStops?.Length > 0;
 	}
 }

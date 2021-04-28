@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CoreAnimation;
 using CoreGraphics;
@@ -8,7 +9,7 @@ namespace Microsoft.Maui.Graphics
 {
 	public static partial class PaintExtensions
 	{
-		public static CALayer? ToCALayer(this Paint paint, CoreGraphics.CGRect frame = default)
+		public static CALayer? ToCALayer(this Paint paint, CGRect frame = default)
 		{
 			if (paint is SolidPaint solidPaint)
 				return solidPaint.CreateCALayer(frame);
@@ -65,7 +66,7 @@ namespace Microsoft.Maui.Graphics
 				EndPoint = new CGPoint(p2.X, p2.Y)
 			};
 
-			if (linearGradientPaint.GradientStops != null && linearGradientPaint.GradientStops.Count > 0)
+			if (linearGradientPaint.GradientStops != null && linearGradientPaint.GradientStops.Length > 0)
 			{
 				var orderedStops = linearGradientPaint.GradientStops.OrderBy(x => x.Offset).ToList();
 				linearGradientLayer.Colors = orderedStops.Select(x => x.Color.ToCGColor()).ToArray();

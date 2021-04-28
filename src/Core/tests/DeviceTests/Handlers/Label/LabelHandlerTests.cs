@@ -10,16 +10,18 @@ namespace Microsoft.Maui.DeviceTests
 	[Category(TestCategory.Label)]
 	public partial class LabelHandlerTests : HandlerTestBase<LabelHandler, LabelStub>
 	{
-		[Fact(DisplayName = "Background Color Initializes Correctly")]
-		public async Task BackgroundColorInitializesCorrectly()
+		[Fact(DisplayName = "Background Initializes Correctly")]
+		public async Task BackgroundInitializesCorrectly()
 		{
+			var brush = new SolidPaintStub(Colors.Blue);
+
 			var label = new LabelStub()
 			{
-				BackgroundColor = Colors.Blue,
+				Background = brush,
 				Text = "Test"
 			};
 
-			await ValidateNativeBackgroundColor(label, Colors.Blue);
+			await ValidateHasColor(label, Colors.Blue);
 		}
 
 		[Fact(DisplayName = "Text Initializes Correctly")]
@@ -33,16 +35,17 @@ namespace Microsoft.Maui.DeviceTests
 			await ValidatePropertyInitValue(label, () => label.Text, GetNativeText, label.Text);
 		}
 
-		[Fact(DisplayName = "Text Color Initializes Correctly")]
-		public async Task TextColorInitializesCorrectly()
+		[Fact(DisplayName = "Foreground Initializes Correctly")]
+		public async Task ForegroundInitializesCorrectly()
 		{
+			var foreground = new SolidPaintStub(Colors.Red);
 			var label = new LabelStub()
 			{
 				Text = "Test",
-				TextColor = Colors.Red
+				Foreground = foreground
 			};
 
-			await ValidatePropertyInitValue(label, () => label.TextColor, GetNativeTextColor, label.TextColor);
+			await ValidateHasColor(label, Colors.Red, () => label.Foreground = foreground);
 		}
 
 		[Theory(DisplayName = "Font Size Initializes Correctly")]

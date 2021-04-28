@@ -1,4 +1,5 @@
 using AndroidX.Core.View;
+using Microsoft.Maui.Graphics;
 using AView = Android.Views.View;
 
 namespace Microsoft.Maui
@@ -20,7 +21,7 @@ namespace Microsoft.Maui
 				return;
 
 			// Remove previous background gradient if any
-			if (view.Background is MauiDrawable mauiDrawable)
+			if (nativeView.Background is MauiDrawable mauiDrawable)
 			{
 				nativeView.Background = null;
 				mauiDrawable.Dispose();
@@ -28,7 +29,7 @@ namespace Microsoft.Maui
 
 			var paint = view.Background;
 
-			if (paint?.IsNullOrEmpty())
+			if (paint.IsNullOrEmpty())
 				return;
 
 			nativeView.Background = paint?.ToDrawable();

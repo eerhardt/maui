@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Android.Text;
 using AndroidX.AppCompat.Widget;
 using Microsoft.Extensions.DependencyInjection;
@@ -66,7 +67,7 @@ namespace Microsoft.Maui.DeviceTests
 		}
 
 		AppCompatEditText GetNativeEditor(EditorHandler editorHandler) =>
-			(AppCompatEditText)editorHandler.NativeView;
+			editorHandler.NativeView;
 
 		string GetNativeText(EditorHandler editorHandler) =>
 			GetNativeEditor(editorHandler).Text;
@@ -76,7 +77,6 @@ namespace Microsoft.Maui.DeviceTests
 
 		Color GetNativePlaceholderColor(EditorHandler editorHandler) =>
 			((uint)GetNativeEditor(editorHandler).CurrentHintTextColor).ToColor();
-
 
 		bool GetNativeIsReadOnly(EditorHandler editorHandler) =>
 			!GetNativeEditor(editorHandler).Focusable;
@@ -102,11 +102,14 @@ namespace Microsoft.Maui.DeviceTests
 			return textView.TextSize / textView.Resources.DisplayMetrics.Density;
 		}
 
-		Color GetNativeTextColor(EditorHandler editorHandler)
+		Task ValidateHasColor(IEditor editor, Color color, Action action = null)
 		{
-			int currentTextColorInt = GetNativeEditor(editorHandler).CurrentTextColor;
-			AColor currentTextColor = new AColor(currentTextColorInt);
-			return currentTextColor.ToColor();
+			return InvokeOnMainThreadAsync(() =>
+			{
+				var nativeEditor = GetNativeEditor(CreateHandler(editor));
+				action?.Invoke();
+				nativeEditor.AssertContainsColor(color);
+			});
 		}
 	}
 }

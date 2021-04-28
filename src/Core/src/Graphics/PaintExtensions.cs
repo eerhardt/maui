@@ -1,7 +1,7 @@
 ﻿#nullable enable
 namespace Microsoft.Maui.Graphics
 {
-	public static partial class BrushExtensions
+	public static partial class PaintExtensions
 	{
 		public static bool IsNullOrEmpty(this Paint? paint)
 		{

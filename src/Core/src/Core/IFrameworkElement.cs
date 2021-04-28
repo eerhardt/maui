@@ -17,7 +17,7 @@ namespace Microsoft.Maui
 		/// <summary>
 		/// Gets the paint which will fill the background of a FrameworkElement.
 		/// </summary>
-		Paint? Background { get; }
+		Paint? Background { get; set; }
 
 		/// <summary>
 		/// Gets the bounds of the FrameworkElement.

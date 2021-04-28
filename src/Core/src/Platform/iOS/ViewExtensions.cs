@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CoreAnimation;
+using Microsoft.Maui.Graphics;
 using UIKit;
 
 namespace Microsoft.Maui
@@ -29,7 +30,7 @@ namespace Microsoft.Maui
 
 			var paint = view.Background;
 
-			if (paint?.IsNullOrEmpty())
+			if (paint.IsNullOrEmpty())
 				return;
 
 			var backgroundLayer = paint?.ToCALayer(nativeView.Bounds);

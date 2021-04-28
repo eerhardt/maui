@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Android.Text;
@@ -94,20 +95,13 @@ namespace Microsoft.Maui.DeviceTests
 		}
 
 		AppCompatEditText GetNativeEntry(EntryHandler entryHandler) =>
-			(AppCompatEditText)entryHandler.NativeView;
+			entryHandler.NativeView;
 
 		string GetNativeText(EntryHandler entryHandler) =>
 			GetNativeEntry(entryHandler).Text;
 
 		void SetNativeText(EntryHandler entryHandler, string text) =>
 			GetNativeEntry(entryHandler).Text = text;
-
-		Color GetNativeTextColor(EntryHandler entryHandler)
-		{
-			int currentTextColorInt = GetNativeEntry(entryHandler).CurrentTextColor;
-			AColor currentTextColor = new AColor(currentTextColorInt);
-			return currentTextColor.ToColor();
-		}
 
 		bool GetNativeIsPassword(EntryHandler entryHandler)
 		{
@@ -249,6 +243,16 @@ namespace Microsoft.Maui.DeviceTests
 			}
 
 			return -1;
+		}
+
+		Task ValidateHasColor(IEntry entry, Color color, Action action = null)
+		{
+			return InvokeOnMainThreadAsync(() =>
+			{
+				var nativeEntry = GetNativeEntry(CreateHandler(entry));
+				action?.Invoke();
+				nativeEntry.AssertContainsColor(color);
+			});
 		}
 	}
 }

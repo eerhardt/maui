@@ -1,7 +1,5 @@
-using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Handlers;
-using Microsoft.Maui.UnitTests;
 using Xunit;
 
 namespace Microsoft.Maui.UnitTests
@@ -16,12 +14,12 @@ namespace Microsoft.Maui.UnitTests
 			bool wasMapper2Called = false;
 			var mapper1 = new PropertyMapper<IView>
 			{
-				[nameof(IView.BackgroundColor)] = (r, v) => wasMapper1Called = true
+				[nameof(IView.Background)] = (r, v) => wasMapper1Called = true
 			};
 
 			var mapper2 = new PropertyMapper<IButton>(mapper1)
 			{
-				[nameof(IView.BackgroundColor)] = (r, v) => wasMapper2Called = true
+				[nameof(IView.Background)] = (r, v) => wasMapper2Called = true
 			};
 
 			mapper2.UpdateProperties(null, new Button());
@@ -37,12 +35,12 @@ namespace Microsoft.Maui.UnitTests
 			bool wasMapper2Called = false;
 			var mapper1 = new PropertyMapper<IView>
 			{
-				[nameof(IView.BackgroundColor)] = (r, v) => wasMapper1Called = true
+				[nameof(IView.Background)] = (r, v) => wasMapper1Called = true
 			};
 
 			var mapper2 = new PropertyMapper<IButton>(mapper1)
 			{
-				[nameof(IButton.TextColor)] = (r, v) => wasMapper2Called = true
+				[nameof(IButton.Foreground)] = (r, v) => wasMapper2Called = true
 			};
 
 			mapper2.UpdateProperties(null, new Button());
@@ -59,15 +57,15 @@ namespace Microsoft.Maui.UnitTests
 			bool wasMapper3Called = false;
 			var mapper1 = new PropertyMapper<IView>
 			{
-				[nameof(IView.BackgroundColor)] = (r, v) => wasMapper1Called = true
+				[nameof(IView.Background)] = (r, v) => wasMapper1Called = true
 			};
 
 			var mapper2 = new PropertyMapper<IButton>(mapper1)
 			{
-				[nameof(IButton.TextColor)] = (r, v) => wasMapper2Called = true
+				[nameof(IButton.Foreground)] = (r, v) => wasMapper2Called = true
 			};
 
-			mapper1[nameof(IView.BackgroundColor)] = (r, v) => wasMapper3Called = true;
+			mapper1[nameof(IView.Background)] = (r, v) => wasMapper3Called = true;
 
 			mapper2.UpdateProperties(null, new Button());
 
@@ -84,7 +82,7 @@ namespace Microsoft.Maui.UnitTests
 			const string mapperActionKey = "Fire";
 			var mapper1 = new PropertyMapper<IView>
 			{
-				[nameof(IView.BackgroundColor)] = (r, v) => wasMapper1Called = true,
+				[nameof(IView.Background)] = (r, v) => wasMapper1Called = true,
 				Actions = {
 					[mapperActionKey] = (r, v) => mapperActionWasCalled = true,
 				}
@@ -107,7 +105,7 @@ namespace Microsoft.Maui.UnitTests
 			const string mapperActionKey = "Fire";
 			var mapper1 = new PropertyMapper<IView>
 			{
-				[nameof(IView.BackgroundColor)] = (r, v) => wasMapper1Called = true,
+				[nameof(IView.Background)] = (r, v) => wasMapper1Called = true,
 				Actions = {
 					[mapperActionKey] = (r, v) => mapperActionWasCalled = true,
 				}
@@ -142,12 +140,12 @@ namespace Microsoft.Maui.UnitTests
 			bool wasMapper2Called = false;
 			var mapper1 = new PropertyMapper<IView, IViewHandler>
 			{
-				[nameof(IView.BackgroundColor)] = (r, v) => wasMapper1Called = true
+				[nameof(IView.Background)] = (r, v) => wasMapper1Called = true
 			};
 
 			var mapper2 = new PropertyMapper<IButton, ButtonHandler>(mapper1)
 			{
-				[nameof(IButton.TextColor)] = (r, v) => wasMapper2Called = true
+				[nameof(IButton.Foreground)] = (r, v) => wasMapper2Called = true
 			};
 
 			mapper2.UpdateProperties(null, new Button());

@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Controls.Internals;
-using Microsoft.Maui.Graphics;
-using Microsoft.Maui.Hosting;
+﻿using Microsoft.Maui.Graphics;
 using Microsoft.Maui.HotReload;
 
 namespace Microsoft.Maui.Controls
@@ -11,8 +9,6 @@ namespace Microsoft.Maui.Controls
 		public Primitives.LayoutAlignment HorizontalLayoutAlignment => Primitives.LayoutAlignment.Fill;
 
 		IView IPage.Content => Content;
-
-
 
 		protected override Size MeasureOverride(double widthConstraint, double heightConstraint)
 		{

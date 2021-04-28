@@ -1,4 +1,5 @@
-﻿using Android.Graphics;
+﻿using System;
+using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Graphics.Drawables.Shapes;
 using AColor = Android.Graphics.Color;
@@ -60,6 +61,16 @@ namespace Microsoft.Maui.Graphics
 
 			_backgroundColor = null;
 			SetShaderFactory(new RadialGradientShaderFactory(shader));
+		}
+
+		public void SetPaint(ImagePaint imagePaint)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetPaint(PatternPaint patternPaint)
+		{
+			throw new NotImplementedException();
 		}
 
 		protected override void OnDraw(Shape? shape, Canvas? canvas, global::Android.Graphics.Paint? paint)

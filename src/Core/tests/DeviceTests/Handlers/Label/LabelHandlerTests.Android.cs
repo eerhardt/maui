@@ -124,13 +124,10 @@ namespace Microsoft.Maui.DeviceTests
 		}
 
 		TextView GetNativeLabel(LabelHandler labelHandler) =>
-			(TextView)labelHandler.NativeView;
+			labelHandler.NativeView;
 
 		string GetNativeText(LabelHandler labelHandler) =>
 			GetNativeLabel(labelHandler).Text;
-
-		Color GetNativeTextColor(LabelHandler labelHandler) =>
-			((uint)GetNativeLabel(labelHandler).CurrentTextColor).ToColor();
 
 		double GetNativeUnscaledFontSize(LabelHandler labelHandler)
 		{
@@ -153,14 +150,6 @@ namespace Microsoft.Maui.DeviceTests
 		int GetNativeMaxLines(LabelHandler labelHandler) =>
 			GetNativeLabel(labelHandler).MaxLines;
 
-		Task ValidateNativeBackgroundColor(ILabel label, Color color)
-		{
-			return InvokeOnMainThreadAsync(() =>
-			{
-				return GetNativeLabel(CreateHandler(label)).AssertContainsColor(color);
-			});
-		}
-
 		(double left, double top, double right, double bottom) GetNativePadding(Android.Views.View view)
 		{
 			return (view.PaddingLeft, view.PaddingTop, view.PaddingRight, view.PaddingBottom);
@@ -176,6 +165,16 @@ namespace Microsoft.Maui.DeviceTests
 			GetNativeLabel(labelHandler).PaintFlags;
 
 		float GetNativeLineHeight(LabelHandler labelHandler) =>
-			GetNativeLabel(labelHandler).LineSpacingMultiplier;
+			GetNativeLabel(labelHandler).LineSpacingMultiplier; 
+		
+		Task ValidateHasColor(ILabel label, Color color, Action action = null)
+		{
+			return InvokeOnMainThreadAsync(() =>
+			{
+				var nativeLabel = GetNativeLabel(CreateHandler(label));
+				action?.Invoke();
+				nativeLabel.AssertContainsColor(color);
+			});
+		}
 	}
 }

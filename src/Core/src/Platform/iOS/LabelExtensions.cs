@@ -13,8 +13,9 @@ namespace Microsoft.Maui
 		public static void UpdateForeground(this UILabel nativeLabel, ITextStyle textStyle, UIColor? defaultColor = null)
 		{
 			// Default value of color documented to be black in iOS docs
-			var textColor = textStyle.TextColor;
-			nativeLabel.TextColor = textColor.ToNative(defaultColor ?? ColorExtensions.LabelColor);
+			var foreground = textStyle.Foreground;
+
+			nativeLabel.SetForeground(foreground, defaultColor ?? ColorExtensions.LabelColor);
 		}
 
 		public static void UpdateCharacterSpacing(this UILabel nativeLabel, ITextStyle textStyle)
