@@ -8,7 +8,7 @@ namespace Microsoft.Maui.Graphics
 {
 	public static partial class PaintExtensions
 	{
-        public static CALayer? ToCALayer(this Paint paint, CoreGraphics.CGRect frame = default)
+		public static CALayer? ToCALayer(this Paint paint, CoreGraphics.CGRect frame = default)
 		{
 			if (paint is SolidPaint solidPaint)
 				return solidPaint.CreateCALayer(frame);
@@ -18,6 +18,12 @@ namespace Microsoft.Maui.Graphics
 
 			if (paint is RadialGradientPaint radialGradientPaint)
 				return radialGradientPaint.CreateCALayer(frame);
+
+			if (paint is ImagePaint imagePaint)
+				return imagePaint.CreateCALayer(frame);
+
+			if (paint is PatternPaint patternPaint)
+				return patternPaint.CreateCALayer(frame);
 
 			return null;
 		}
@@ -92,6 +98,16 @@ namespace Microsoft.Maui.Graphics
 			}
 
 			return radialGradientLayer;
+		}
+
+		public static CALayer? CreateCALayer(this ImagePaint imagePaint, CGRect frame = default)
+		{
+			throw new NotImplementedException();
+		}
+
+		public static CALayer? CreateCALayer(this PatternPaint patternPaint, CGRect frame = default)
+		{
+			throw new NotImplementedException();
 		}
 
 		static CGPoint GetRadialGradientPaintEndPoint(Point startPoint, double radius)

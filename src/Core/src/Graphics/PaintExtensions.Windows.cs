@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WBrush = Microsoft.UI.Xaml.Media.Brush;
@@ -15,12 +16,18 @@ namespace Microsoft.Maui.Graphics
 		{
 			if (paint is SolidPaint solidPaint)
 				return solidPaint.CreateBrush();
-			
+
 			if (paint is LinearGradientPaint linearGradientPaint)
 				return linearGradientPaint.CreateBrush();
-			
+
 			if (paint is RadialGradientPaint radialGradientPaint)
 				return radialGradientPaint.CreateBrush();
+
+			if (paint is ImagePaint imagePaint)
+				return imagePaint.CreateBrush();
+			
+			if (paint is PatternPaint patternPaint)
+				return patternPaint.CreateBrush();
 
 			return null;
 		}
@@ -60,6 +67,16 @@ namespace Microsoft.Maui.Graphics
 			brush.GradientStops.AddRange(radialGradientPaint.GradientStops);
 
 			return brush;
+		}
+
+		public static WBrush? CreateBrush(this ImagePaint imagePaint)
+		{
+			throw new NotImplementedException();
+		}
+
+		public static WBrush? CreateBrush(this PatternPaint patternPaint)
+		{
+			throw new NotImplementedException();
 		}
 
 		static void AddRange(this IList<WGradientStop> nativeStops, IEnumerable<GradientStop> stops)
