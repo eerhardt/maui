@@ -4,7 +4,21 @@ namespace Microsoft.Maui.Graphics
 {
 	public static partial class PaintExtensions
 	{
-		public static Drawable? CreateDrawable(this SolidPaint solidPaint)
+        public override Drawable? ToDrawable(this Paint paint)
+		{
+			if (paint is SolidPaint solidPaint)
+				return solidPaint.CreateDrawable();
+
+			if (paint is LinearGradientPaint linearGradientPaint)
+				return linearGradientPaint.CreateDrawable();
+
+			if (paint is RadialGradientPaint radialGradientPaint)
+				return radialGradientPaint.CreateDrawable();
+
+			return null;
+		}
+
+        public static Drawable? CreateDrawable(this SolidPaint solidPaint)
 		{
 			var drawable = new MauiDrawable();
 			drawable.SetPaint(solidPaint);

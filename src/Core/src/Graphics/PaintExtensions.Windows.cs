@@ -11,11 +11,25 @@ namespace Microsoft.Maui.Graphics
 {
 	public static partial class PaintExtensions
 	{
-		public static WBrush? CreateBrush(this SolidColorPaint solidColorPaint)
+		public static WBrush? ToNative(this Paint paint)
+		{
+			if (paint is SolidPaint solidPaint)
+				return solidPaint.CreateBrush();
+			
+			if (paint is LinearGradientPaint linearGradientPaint)
+				return linearGradientPaint.CreateBrush();
+			
+			if (paint is RadialGradientPaint radialGradientPaint)
+				return radialGradientPaint.CreateBrush();
+
+			return null;
+		}
+
+		public static WBrush? CreateBrush(this SolidPaint solidPaint)
 		{
 			var brush = new WSolidColorBrush
 			{
-				Color = solidColorPaint.Color.ToWindowsColor()
+				Color = solidPaint.Color.ToWindowsColor()
 			};
 
 			return brush;
