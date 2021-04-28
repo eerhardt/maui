@@ -1,3 +1,5 @@
+using Microsoft.Maui.Graphics;
+
 namespace Microsoft.Maui
 {
 	public static class TextBoxExtensions
@@ -7,14 +9,16 @@ namespace Microsoft.Maui
 			textBox.Text = entry.Text;
 		}
 
-		public static void UpdateTextColor(this MauiTextBox textBox, ITextStyle textStyle)
+		public static void UpdateForeground(this MauiTextBox textBox, ITextStyle textStyle)
 		{
-			if (textStyle.TextColor == null)
+			if (textStyle.Foreground == null)
 				return;
 
-			var brush = textStyle.TextColor.ToNative();
-			textBox.Foreground = brush;
-			textBox.ForegroundFocusBrush = brush;
+			Paint? paint = textStyle.Foreground;
+			var foreground = paint.ToNative();
+
+			textBox.Foreground = foreground;
+			textBox.ForegroundFocusBrush = foreground;
 		}
 
 		public static void UpdatePlaceholder(this MauiTextBox textBox, IEntry entry)

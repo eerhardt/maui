@@ -28,7 +28,7 @@ namespace Microsoft.Maui
 			editText.SetSelection(editText.Text?.Length ?? 0);
 		}
 
-		public static void UpdateTextColor(this AppCompatEditText editText, ITextStyle entry, ColorStateList? defaultColor)
+		public static void UpdateForeground(this AppCompatEditText editText, ITextStyle entry, ColorStateList? defaultColor)
 		{
 			var textColor = entry.TextColor;
 

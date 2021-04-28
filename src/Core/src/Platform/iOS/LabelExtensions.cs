@@ -10,7 +10,7 @@ namespace Microsoft.Maui
 			nativeLabel.Text = label.Text;
 		}
 
-		public static void UpdateTextColor(this UILabel nativeLabel, ITextStyle textStyle, UIColor? defaultColor = null)
+		public static void UpdateForeground(this UILabel nativeLabel, ITextStyle textStyle, UIColor? defaultColor = null)
 		{
 			// Default value of color documented to be black in iOS docs
 			var textColor = textStyle.TextColor;

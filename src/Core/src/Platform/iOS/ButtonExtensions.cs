@@ -7,10 +7,10 @@ namespace Microsoft.Maui
 		public static void UpdateText(this UIButton nativeButton, IButton button) =>
 			nativeButton.SetTitle(button.Text, UIControlState.Normal);
 
-		public static void UpdateTextColor(this UIButton nativeButton, IButton button) =>
-			nativeButton.UpdateTextColor(button);
+		public static void UpdateForeground(this UIButton nativeButton, IButton button) =>
+			nativeButton.UpdateForeground(button);
 
-		public static void UpdateTextColor(this UIButton nativeButton, IButton button, UIColor? buttonTextColorDefaultNormal, UIColor? buttonTextColorDefaultHighlighted, UIColor? buttonTextColorDefaultDisabled)
+		public static void UpdateForeground(this UIButton nativeButton, IButton button, UIColor? buttonTextColorDefaultNormal, UIColor? buttonTextColorDefaultHighlighted, UIColor? buttonTextColorDefaultDisabled)
 		{
 
 			if (button.TextColor == null)

@@ -9,7 +9,7 @@ namespace Microsoft.Maui
 			textField.Text = entry.Text;
 		}
 
-		public static void UpdateTextColor(this UITextField textField, ITextStyle textStyle, UIColor? defaultTextColor = null)
+		public static void UpdateForeground(this UITextField textField, ITextStyle textStyle, UIColor? defaultTextColor = null)
 		{
 			// Default value of color documented to be black in iOS docs
 

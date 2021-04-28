@@ -32,7 +32,7 @@ namespace Microsoft.Maui.Handlers
 		[MissingMapper]
 		public static void MapIsReadOnly(IViewHandler handler, IEditor editor) { }
 
-		public static void MapTextColor(EditorHandler handler, IEditor editor) =>
-			handler.NativeView?.UpdateTextColor(editor);
+		public static void MapForeground(EditorHandler handler, IEditor editor) =>
+			handler.NativeView?.UpdateForeground(editor);
 	}
 }

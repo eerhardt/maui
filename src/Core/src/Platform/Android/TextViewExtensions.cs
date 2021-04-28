@@ -20,15 +20,15 @@ namespace Microsoft.Maui
 				textView.Text = newText;
 		}
 
-		public static void UpdateTextColor(this TextView textView, ITextStyle textStyle, Graphics.Color defaultColor)
+		public static void UpdateForeground(this TextView textView, ITextStyle textStyle, Graphics.Color defaultColor)
 		{
 			textView.SetTextColor(textStyle.TextColor?.ToNative() ?? defaultColor.ToNative());
 		}
 
-		public static void UpdateTextColor(this TextView textView, ITextStyle textStyle) =>
-			textView.UpdateTextColor(textStyle, textView.TextColors);
+		public static void UpdateForeground(this TextView textView, ITextStyle textStyle) =>
+			textView.UpdateForeground(textStyle, textView.TextColors);
 
-		public static void UpdateTextColor(this TextView textView, ITextStyle textStyle, ColorStateList? defaultColor)
+		public static void UpdateForeground(this TextView textView, ITextStyle textStyle, ColorStateList? defaultColor)
 		{
 			var textColor = textStyle.TextColor;
 			if (textColor == null)

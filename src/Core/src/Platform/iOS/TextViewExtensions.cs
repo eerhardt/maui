@@ -14,7 +14,7 @@ namespace Microsoft.Maui
 			}
 		}
 
-		public static void UpdateTextColor(this UITextView textView, IEditor editor)
+		public static void UpdateForeground(this UITextView textView, IEditor editor)
 		{
 			var textColor = editor.TextColor;
 
