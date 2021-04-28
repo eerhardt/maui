@@ -10,20 +10,14 @@ namespace Microsoft.Maui
 {
 	public static class CheckBoxExtensions
 	{
-		static readonly int[][] CheckedStates = new int[][]
+		public static void UpdateBackground(this AppCompatCheckBox nativeCheckBox, ICheckBox check)
 		{
-			new int[] { AAttribute.StateEnabled, AAttribute.StateChecked },
-			new int[] { AAttribute.StateEnabled, -AAttribute.StateChecked },
-			new int[] { -AAttribute.StateEnabled, AAttribute.StateChecked },
-			new int[] { -AAttribute.StateEnabled, -AAttribute.StatePressed },
-		};
+			var paint = check.Background;
 
-		public static void UpdateBackgroundColor(this AppCompatCheckBox nativeCheckBox, ICheckBox check)
-		{
-			if (check.BackgroundColor == null)
+			if (paint?.IsNullOrEmpty())
 				nativeCheckBox.SetBackgroundColor(AColor.Transparent);
 			else
-				nativeCheckBox.SetBackgroundColor(check.BackgroundColor.ToNative());
+				nativeCheckBox.UpdateBackground((IView)check);
 		}
 
 		public static void UpdateIsChecked(this AppCompatCheckBox nativeCheckBox, ICheckBox check)

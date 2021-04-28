@@ -14,11 +14,24 @@ namespace Microsoft.Maui
 				nativeView.Enabled = view.IsEnabled;
 		}
 
-		public static void UpdateBackgroundColor(this AView nativeView, IView view)
+		public static void UpdateBackground(this AView nativeView, IView view)
 		{
-			var backgroundColor = view.BackgroundColor;
-			if (backgroundColor != null)
-				nativeView?.SetBackgroundColor(backgroundColor.ToNative());
+			if (view == null)
+				return;
+
+			// Remove previous background gradient if any
+			if (view.Background is MauiDrawable mauiDrawable)
+			{
+				nativeView.Background = null;
+				mauiDrawable.Dispose();
+			}
+
+			var paint = view.Background;
+
+			if (paint?.IsNullOrEmpty())
+				return;
+
+			nativeView.Background = paint?.ToDrawable();
 		}
 
 		public static bool GetClipToOutline(this AView view)
